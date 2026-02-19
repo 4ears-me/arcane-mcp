@@ -61,7 +61,7 @@ Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/
   "mcpServers": {
     "arcane": {
       "command": "node",
-      "args": ["/path/to/arcane-mcp/dist/index.js"],
+      "args": ["/path/to/@4ears-me/arcane-mcp/dist/index.js"],
       "env": {
         "ARCANE_API_URL": "https://arcane.example.com",
         "ARCANE_API_KEY": "your-api-key"
@@ -80,7 +80,7 @@ Add to your Cursor MCP settings:
   "mcpServers": {
     "arcane": {
       "command": "node",
-      "args": ["/path/to/arcane-mcp/dist/index.js"],
+      "args": ["/path/to/@4ears-me/arcane-mcp/dist/index.js"],
       "env": {
         "ARCANE_API_URL": "https://arcane.example.com",
         "ARCANE_API_KEY": "your-api-key"
@@ -97,7 +97,7 @@ Add to your Cursor MCP settings:
   "mcpServers": {
     "arcane": {
       "command": "npx",
-      "args": ["-y", "arcane-mcp"],
+      "args": ["-y", "@4ears-me/arcane-mcp"],
       "env": {
         "ARCANE_API_URL": "https://arcane.example.com",
         "ARCANE_API_KEY": "your-api-key"

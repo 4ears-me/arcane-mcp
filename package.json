@@ -1,5 +1,5 @@
 {
-  "name": "arcane-mcp",
+  "name": "@4ears-me/arcane-mcp",
   "version": "1.0.0",
   "type": "module",
   "description": "MCP server for controlling Arcane Docker Management",
@@ -43,5 +43,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
