@@ -186,3 +186,30 @@ export function createContainerApi(client: ArcaneClient) {
 3. Run `npm publish`
 
 The `prepublishOnly` script ensures build runs before publish.
+
+## Development Workflow
+
+All changes must be made through pull requests:
+
+1. **Create a branch** for your feature or fix:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Make your changes** and commit them:
+   ```bash
+   git add .
+   git commit -m "Description of changes"
+   ```
+
+3. **Push your branch** and create a PR:
+   ```bash
+   git push -u origin your-branch-name
+   gh pr create --title "Your PR title" --body "Description"
+   ```
+
+4. **Wait for CI checks** to pass (build and test)
+
+5. **Merge** after approval (or admin merge if required)
+
+Direct pushes to `main` are not allowed - all changes require a PR.
