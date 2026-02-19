@@ -56,3 +56,51 @@ jobs:
           name: coverage-report
           path: coverage/
           retention-days: 7
+
+  mcp-server:
+    runs-on: codebuild-4ears-me-${{ github.run_id }}-${{ github.run_attempt }}
+    needs: build
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test MCP server starts
+        env:
+          INIT_REQUEST: '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0.0"}}}'
+        run: |
+          RESPONSE=$(echo "$INIT_REQUEST" | \
+            ARCANE_API_URL=http://test ARCANE_API_KEY=test timeout 5 node dist/index.js 2>&1)
+          
+          echo "Server response: $RESPONSE"
+          
+          echo "$RESPONSE" | grep -q '"protocolVersion":"2024-11-05"'
+          echo "$RESPONSE" | grep -q '"name":"arcane"'
+          
+          echo "MCP server started and responded correctly"
+
+      - name: Test MCP server lists tools
+        env:
+          INIT_REQUEST: '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0.0"}}}'
+          TOOLS_REQUEST: '{"jsonrpc":"2.0","id":2,"method":"tools/list"}'
+        run: |
+          RESPONSE=$(printf '%s\n%s\n' "$INIT_REQUEST" "$TOOLS_REQUEST" | \
+            ARCANE_API_URL=http://test ARCANE_API_KEY=test timeout 5 node dist/index.js 2>&1)
+          
+          echo "Tools response: $RESPONSE"
+          
+          echo "$RESPONSE" | grep -q '"tools"'
+          
+          echo "MCP server tools/list works correctly"
