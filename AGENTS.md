@@ -7,7 +7,7 @@ An MCP (Model Context Protocol) server for controlling [Arcane](https://github.c
 ## Project Structure
 
 ```
-arcane-mcp/
+@4ears-me/arcane-mcp/
 ├── src/
 │   ├── api/                    # Arcane API client layer
 │   │   ├── client.ts           # Main ArcaneClient class with auth & request handling
