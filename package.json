@@ -1,6 +1,6 @@
 {
   "name": "@4ears-me/arcane-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "MCP server for controlling Arcane Docker Management",
   "main": "dist/index.js",
@@ -8,11 +8,10 @@
     "arcane-mcp": "dist/index.js"
   },
   "files": [
-    "dist",
-    "README.md"
+    "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x dist/*.js",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "test": "vitest run",
